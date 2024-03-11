@@ -1,0 +1,24 @@
+begin_object: DIEM[x,y];
+
+  x, y: real;
+
+  begin_variables
+  end_variables
+
+  begin_construct_relations
+  end_construct_relations
+
+  begin_properties
+  end_properties
+
+  begin_computation_relations
+  end_computation_relations
+
+  begin_rules
+  end_rules
+
+  begin_functions
+  end_functions
+
+end_object
+

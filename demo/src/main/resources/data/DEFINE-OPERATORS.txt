@@ -1,0 +1,43 @@
+begin_define_operators
+
+  begin_define_operator:+(a,b)
+    a,b:VECTO
+    begin_proc
+      local c:VECTO;
+      c.x=a.x+b.x; 
+      c.y=a.y+b.y;       
+      return c;
+    end_proc
+  end_define_operator
+  
+  begin_define_operator:-(a,b)
+    a,b:VECTO
+    begin_proc
+      local c:VECTO;
+      c.x=a.x-b.x;
+      c.y=a.y-b.y;       
+      return c;
+    end_proc
+    begin_properties
+    end_properties
+  end_define_operator
+
+  begin_define_operator:*(k,a)
+    a,b:VECTO
+    begin_proc
+      local c:VECTO;
+      c.x=k*a.x;
+      c.y=K*a.y;       
+      return c;
+    end_proc
+  end_define_operator
+
+  begin_define_operator:*(a,b)
+    a,b:VECTO
+    begin_proc
+      local c:real;
+      c=a.x*b.x+a.y*b.y;
+      return c;
+    end_proc
+  end_define_operator
+end_define_operators

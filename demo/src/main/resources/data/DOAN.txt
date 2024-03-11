@@ -1,0 +1,58 @@
+begin_object: DOAN[A1,B1];
+  A1,B1: DIEM;	
+ 
+  begin_variables
+    a: real;  #do dai
+    f: PTDT_TQ;
+    
+  end_variables
+
+  begin_construct_relations
+    a = sqrt((B1.x-A1.x)^2+(B1.y-A1.y)^2);
+  end_construct_relations
+
+  begin_properties
+    DOAN[A1,B1] = DOAN[B1,A1];
+    ["THUOC",A1,"Object"]
+    ["THUOC",B1,"Object"]
+  end_properties
+
+  begin_computation_relations
+  end_computation_relations
+
+  begin_rules
+
+
+  begin_rule 
+     kind_rule = "xac_dinh_doi_tuong";
+     f:PTDT_TQ
+      hypothesis_part:  
+        {A1,B1}
+    end_hypothesis_part
+    goal_part: 
+      {"Object"}
+    end_goal_part
+    proc: f=ptdt2d[A1,B1];    
+  end_rule
+  
+  
+  begin_rule
+      kind_rule = "xac_dinh_doi_tuong";
+      f:PTDT_TQ
+      hypothesis_part:  
+        {f}
+      end_hypothesis_part
+      goal_part: 
+        {"Object"}
+      end_goal_part
+  end_rule
+
+
+  end_rules
+
+  begin_functions
+      TRUNGDIEM(A1,B1)
+  end_functions
+
+end_object
+

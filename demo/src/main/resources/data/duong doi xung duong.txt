@@ -1,0 +1,21 @@
+begin_function:DOIXUNG(d1,d2)
+    d1,d2:DUONGTHANG   
+    return C:DUONGTHANG
+    begin_proc            
+       local A,d,H,M,N;         
+         A:= [0,solve(eval(d1,x = 0))];
+         d:=ptdvgdt(A,d2);
+         H:=solve({d,d2},{x,y});
+         if H = NULL then return NULL; fi;
+         if lhs(H[1])=x then  H:=[rhs(H[1]),rhs(H[2])];
+         else  H:=[rhs(H[2]),rhs(H[1])]; fi;
+         M:=[2*H[1]-A[1],2*H[2]-A[2]];
+         N:=solve({d1,d2},{x,y});
+         if N=NULL then return ptdssdt(M,d1);fi;
+         if lhs(N[1])=x then  N:=[rhs(N[1]),rhs(N[2])];
+         else  N:=[rhs(N[2]),rhs(N[1])]; fi;
+         return ptdt2d(M,N);               
+    end_proc
+    properties        
+    end_properties
+end_function

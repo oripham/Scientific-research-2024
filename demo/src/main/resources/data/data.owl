@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#"
+     xml:base="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:untitled-ontology-5="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Bac_cua_dinh -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Bac_cua_dinh">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Chu_trinh_Euler -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Chu_trinh_Euler">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Chu_trinh_Hamilton -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Chu_trinh_Hamilton">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Khai_niem -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Khai_niem">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Khuyen -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Khuyen">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#short"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Thanh_phan_lien_thong -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Thanh_phan_lien_thong">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Có_hướng -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Có_hướng">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Vô_hướng -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Vô_hướng">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Lý_thuyết_đồ_thị -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Lý_thuyết_đồ_thị">
+        <rdf:type rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị"/>
+        <Chu_trinh_Euler>Chu trình đơn trong đồ thị G đi qua mọi cạnh của nó, mỗi cạnh chỉ đi qua một lần được gọi là chu trình Euler.</Chu_trinh_Euler>
+        <Chu_trinh_Hamilton>Chu trình bắt đầu từ một đỉnh v nào đó qua tất cả các đỉnh còn lại mỗi đỉnh đúng một lần rồi quay trở về v.</Chu_trinh_Hamilton>
+        <Khai_niem>Đồ thị là 1 cấu trúc rời rạc gồm các đỉnh và các cạnh (vô hướng hoặc có hướng) nối các đỉnh đó.</Khai_niem>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị_có_hướng -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị_có_hướng">
+        <rdf:type rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Có_hướng"/>
+        <Bac_cua_dinh>Trong đồ thị có hướng G=(V,E), 
+• Bán bậc ra của một đỉnh v (deg+ (v)) là số cung đi ra khỏi nó.
+• Bán bậc vào của một đỉnh v (deg− (v)) là số cung đi vào nó.
+• Bậc của đỉnh = (deg+) + (deg−)</Bac_cua_dinh>
+        <Khai_niem>Đồ thị có hướng G = (V, E) trong đó:
+• Tập khác rỗng V là tập hợp hữu hạn các đỉnh của đồ thị.
+• E là tập hợp các cặp có thứ tự gồm hai phần tử khác nhau của V gọi là các cung.
+• Mỗi cạnh e thuộc E liên kết với 1 cặp đỉnh (i,j) thuộc V^2, quy định hướng đi từ i-&gt;j.</Khai_niem>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị_vô_hướng -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Đồ_thị_vô_hướng">
+        <rdf:type rdf:resource="http://www.semanticweb.org/admin/ontologies/2024/1/untitled-ontology-5#Vô_hướng"/>
+        <Bac_cua_dinh>Bậc của đỉnh v trong đồ thị vô hướng G=(V,E), ký hiệu deg(v), là số các cạnh liên thuộc với nó, riêng khuyên tại một đỉnh được tính hai lần cho bậc của nó.
+Deg(v) = 1 -&gt; đỉnh treo
+Deg(v) = 0 -&gt; đỉnh cô lập</Bac_cua_dinh>
+        <Khai_niem>Đồ thị vô hướng G = (V, E) trong đó:
+• Tập khác rỗng V là tập hợp hữu hạn các đỉnh của đồ thị.
+• E là tập hợp các cặp không có thứ tự gồm hai phần tử khác nhau của V gọi là các cạnh.
+• Mỗi cạnh e thuộc E liên kết với 1 cặp đỉnh (i,j) thuộc V^2, không quy định thứ tự.</Khai_niem>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

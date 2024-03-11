@@ -1,0 +1,23 @@
+begin_object: PARABOL;
+  
+  begin_variables
+    F, O: DIEM;  # Toa do tieu diem va dinh cua Parabol
+    x, p: real;  # Duong chuan
+    f: PTCT_P;  # Phuong trinh Parabol dang chinh tac
+  end_variables
+
+  begin_properties
+  end_properties
+
+  begin_computation_relations
+  end_computation_relations
+
+  begin_rules
+  end_rules
+
+  begin_functions  
+
+  end_functions
+
+end_object
+

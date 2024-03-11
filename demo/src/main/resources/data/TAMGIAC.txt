@@ -1,0 +1,580 @@
+begin_object: TAMGIAC[A1,B1,C1];
+   B1,C1,A1:DIEM
+  begin_variables
+     GocA : GOC[C1,A1,B1];
+     GocB : GOC[A1,B1,C1];
+     GocC : GOC[B1,C1,A1];
+     a : DOAN[B1,C1];
+     b : DOAN[A1,C1];
+     c : DOAN[A1,B1];
+     ha,hb,hc,ma,mb,mc,pa,pb,pc : DOAN;
+     S,p,R,r,ra,rb,rc : REAL;
+  end_variables
+
+  begin_construct_relations
+  S=1/2*abs((B1.x-A1.x)*(C1.y-A1.y)-(C1.x-A1.x)*(B1.y-A1.y))
+  end_construct_relations
+
+  begin_properties
+  end_properties
+
+  begin_computation_relations
+
+   begin_relation  0
+     flag = 1
+     Mf    ={GocA,GocB,GocC}
+     rf    =1
+     vf    ={}
+     expf =`  GocA + GocB + GocC = Pi `
+     cost=2
+   end_relation
+
+   begin_relation  1
+     flag = 0
+     Mf    ={a, b, c, GocA}
+     rf    =1
+     vf    ={a}
+     expf  =`  a^2 = b^2 + c^2 - 2*b*c*cos(GocA)`
+     cost=19
+   end_relation
+
+   begin_relation  2
+     flag = 0
+     Mf    ={a, b, c, GocB}
+     rf    =1
+     vf    ={b}
+     expf  =`b^2 = a^2 + c^2 - 2*a*c*cos(GocB)`
+     cost=19
+   end_relation
+
+   begin_relation  3
+     flag  =0
+     Mf    ={a, b, c, GocC}
+     rf    =1
+     vf    ={c}
+     expf = `c^2 = a^2 + b^2 - 2*a*b*cos(GocC)`
+     cost=19
+   end_relation
+
+   begin_relation  4
+     flag = 1
+     Mf  ={ a, b, GocA, GocB}
+     rf    =1
+     vf   ={}
+     expf = `a*sin(GocB) = b*sin(GocA) `
+     cost=8
+   end_relation
+
+   begin_relation  5
+     flag = 1
+     Mf    ={b, c, GocB, GocC}
+     rf    =1
+     vf    ={}
+     expf = `b*sin(GocC) = c*sin(GocB)`
+     cost=8
+   end_relation
+
+   begin_relation  6
+     flag = 1
+     Mf    ={a, c, GocA, GocC}
+     rf    =1
+     vf    ={}
+     expf  =`a*sin(GocC) = c*sin(GocA)`
+     cost=8
+   end_relation
+
+   begin_relation  7
+     flag = 1
+     Mf    ={a, GocA, R}
+     rf    =1
+     vf    ={}
+     expf  =`a = 2*R*sin(GocA)`
+     cost=6
+   end_relation
+
+   begin_relation  8
+     flag = 1
+     Mf    ={b, GocB, R}
+     rf    =1
+     vf    ={}
+     expf  =`b = 2*R*sin(GocB)`
+     cost=6
+   end_relation
+
+   begin_relation  9
+     flag = 1
+     Mf    ={c, GocC, R}
+     rf    =1
+     vf    ={}
+     expf  =`c = 2*R*sin(GocC)`
+     cost=6
+   end_relation
+
+   begin_relation  10
+     flag = 1
+     Mf    ={p, a, b, c}
+     rf    =1
+     vf    ={}
+     expf = `2*p = a+b+c`
+     cost=4
+   end_relation
+
+   begin_relation  11
+     flag  =1
+     Mf    ={S, a, ha}
+     rf    =1
+     vf    ={}
+     expf =` S = a*ha/2`
+     cost=4
+   end_relation
+
+   begin_relation  12
+     flag  =1
+     Mf    ={S, b, hb}
+     rf    =1
+     vf    ={}
+     expf  =`S = b*hb/2`
+     cost=4
+   end_relation
+
+   begin_relation  13
+     flag = 1
+     Mf   = {S, c, hc}
+     rf    =1
+     vf    ={}
+     expf  =`S = c*hc/2`
+     cost=4
+   end_relation
+
+   begin_relation  14
+     flag = 1
+     Mf    ={S, p, r}
+     rf    =1
+     vf    ={}
+     expf  =`S = p*r`
+     cost=2
+   end_relation
+
+   begin_relation  15
+     flag = 0
+     Mf   ={S, a, b, c, p}
+     rf    =1
+     vf    ={S}
+     expf  =`S = sqrt(p*(p-a)*(p-b)*(p-c))`
+     cost=12
+   end_relation
+
+   begin_relation  16
+     flag  =1
+     Mf    ={S, b, c, GocA}
+     rf    =1
+     vf    ={}
+     expf  =`S = b*c*sin(GocA)/2`
+     cost=8
+   end_relation
+
+   begin_relation  17
+     flag = 1
+     Mf    ={S, a, c, GocB}
+     rf    =1
+     vf   = {}
+     expf =` S = a*c*sin(GocB)/2`
+     cost=8
+   end_relation
+
+   begin_relation  18
+     flag = 1
+     Mf    ={S, a, b, GocC}
+     rf    =1
+     vf    ={}
+     expf =` S = a*b*sin(GocC)/2`
+     cost=8
+   end_relation
+
+   begin_relation  19
+     flag = 1
+     Mf    ={ha, b, GocC}
+     rf   = 1
+     vf   = {}
+     expf =` ha = b*sin(GocC)`
+     cost=4
+   end_relation
+
+   begin_relation  20
+     flag = 1
+     Mf    ={ha, c, GocB}
+     rf    =1
+     vf    ={}
+     expf =`ha = c*sin(GocB)`
+     cost=4
+   end_relation
+
+   begin_relation  21
+     flag = 1
+     Mf    ={hb, a, GocC}
+     rf    =1
+     vf    ={}
+     expf  =`hb = a*sin(GocC)`
+     cost=4
+   end_relation
+
+   begin_relation  22
+     flag = 1
+     Mf    ={hb, c, GocA}
+     rf    =1
+     vf   = {}
+     expf =` hb = c*sin(GocA)`
+     cost=4
+   end_relation
+
+   begin_relation  23
+     flag  =1
+     Mf    ={hc, a, GocB}
+     rf    =1
+     vf    ={}
+     expf=` hc = a*sin(GocB)`
+     cost=4
+   end_relation
+
+   begin_relation  24
+     flag  =1
+     Mf    ={hc, b, GocA}
+     rf    =1
+     vf    ={}
+     expf  =`hc = b*sin(GocA)`
+     cost=4
+   end_relation
+
+  end_computation_relations
+
+  begin_rules
+
+   begin_rule 1
+     kind_rule = "";
+     hypothesis_part:
+       {GocA = GocB}
+     end_hypothesis_part
+     goal_part:
+       {a = b,["CAN","Object",C]}
+     end_goal_part
+  end_rule
+
+  begin_rule 2
+     kind_rule = "";
+     hypothesis_part:
+       {a = b}
+     end_hypothesis_part
+     goal_part:
+       {GocA = GocB ,["CAN","Object",C]}
+     end_goal_part
+  end_rule
+
+ begin_rule 3
+     kind_rule = "";
+     hypothesis_part:
+       {["CAN","Object",C]}
+     end_hypothesis_part
+     goal_part:
+       {GocA = GocB ,a = b}
+     end_goal_part
+  end_rule
+
+  begin_rule 4
+     kind_rule = "";
+     hypothesis_part:
+       {GocA = GocC}
+     end_hypothesis_part
+     goal_part:
+       {a = c,["CAN","Object",B]}
+     end_goal_part
+  end_rule
+
+  begin_rule 5
+     kind_rule = "";
+     hypothesis_part:
+       {a = c}
+     end_hypothesis_part
+     goal_part:
+       {GocA = GocC,["CAN","Object",B] }
+     end_goal_part
+  end_rule
+
+ begin_rule 6
+     kind_rule = "";
+     hypothesis_part:
+       {["CAN","Object",B]}
+     end_hypothesis_part
+     goal_part:
+       {GocA = GocC,a = c}
+     end_goal_part
+  end_rule
+
+  begin_rule 7
+     kind_rule = "";
+     hypothesis_part:
+       {GocB = GocC}
+     end_hypothesis_part
+     goal_part:
+       {b = c,["CAN","Object",A]}
+     end_goal_part
+  end_rule
+
+  begin_rule 8
+     kind_rule = "";
+     hypothesis_part:
+       {b = c}
+     end_hypothesis_part
+     goal_part:
+       {GocB = GocC,["CAN","Object",A] }
+     end_goal_part
+  end_rule
+
+ begin_rule 9
+     kind_rule = "";
+     hypothesis_part:
+       {["CAN","Object",A]}
+     end_hypothesis_part
+     goal_part:
+       {GocB = GocC,b = c}
+     end_goal_part
+  end_rule
+
+  begin_rule 10
+     kind_rule = "";
+     hypothesis_part:
+       {a^2 = b^2+c^2}
+     end_hypothesis_part
+     goal_part:
+       {GocA= Pi/2,["VUONG","Object",A],["VUONG",b,c],["VUONG",VECTO(A,B),VECTO(A,C)]}
+     end_goal_part
+  end_rule
+
+  begin_rule 11
+     kind_rule = "";
+     hypothesis_part:
+       {GocA= Pi/2}
+     end_hypothesis_part
+     goal_part:
+       {a^2 = b^2+c^2,["VUONG","Object",A],["VUONG",b,c],["VUONG",VECTO(A,B),VECTO(A,C)]}
+     end_goal_part
+  end_rule
+
+ begin_rule 12
+     kind_rule = "";
+     hypothesis_part:
+       {["VUONG",b,c]}
+     end_hypothesis_part
+     goal_part:
+       {a^2 = b^2 + c^2,["VUONG","Object",A],GocA= Pi/2,["VUONG",VECTO(A,B),VECTO(A,C)]}
+     end_goal_part
+  end_rule
+
+ begin_rule 13
+     kind_rule = "";
+     hypothesis_part:
+       {["VUONG","Object",A]}
+     end_hypothesis_part
+     goal_part:
+       {a^2 = b^2 + c^2,["VUONG",b,c],GocA= Pi/2,["VUONG",VECTO(A,B),VECTO(A,C)]}
+     end_goal_part
+  end_rule
+
+  begin_rule 14
+     kind_rule = "";
+     hypothesis_part:
+       {b^2 = a^2+c^2}
+     end_hypothesis_part
+     goal_part:
+       {GocB= Pi/2,["VUONG","Object",B],["VUONG",a,c],["VUONG",VECTO(A,B),VECTO(B,C)]}
+     end_goal_part
+  end_rule
+
+  begin_rule 15
+     kind_rule = "";
+     hypothesis_part:
+       {GocB= Pi/2}
+     end_hypothesis_part
+     goal_part:
+       {b^2 = a^2+c^2,["VUONG","Object",B],["VUONG",a,c],["VUONG",VECTO(A,B),VECTO(B,C)]}
+     end_goal_part
+  end_rule
+
+  begin_rule 16
+     kind_rule = "";
+     hypothesis_part:
+       {["VUONG",a,c]}
+     end_hypothesis_part
+     goal_part:
+       {b^2 = a^2+c^2,["VUONG","Object",B],GocB= Pi/2,["VUONG",VECTO(A,B),VECTO(B,C)]}
+     end_goal_part
+  end_rule
+
+  begin_rule 17
+     kind_rule = "";
+     hypothesis_part:
+       {["VUONG","Object",B]}
+     end_hypothesis_part
+     goal_part:
+       {b^2 = a^2+c^2,GocB= Pi/2,["VUONG",a,c],["VUONG",VECTO(A,B),VECTO(B,C)]}
+     end_goal_part
+  end_rule
+
+  begin_rule 18
+     kind_rule = "";
+     hypothesis_part:
+       {c^2 = a^2 + b^2}
+     end_hypothesis_part
+     goal_part:
+       {GocC= Pi/2,["VUONG","Object",C],["VUONG",a,b],["VUONG",VECTO(A,C),VECTO(B,C)]}
+     end_goal_part
+  end_rule
+
+  begin_rule 19
+     kind_rule = "";
+     hypothesis_part:
+       {GocC= Pi/2}
+     end_hypothesis_part
+     goal_part:
+       {c^2 = a^2 + b^2,["VUONG","Object",C],["VUONG",a,b],["VUONG",VECTO(A,C),VECTO(B,C)]}
+     end_goal_part
+  end_rule
+
+ begin_rule 20
+     kind_rule = "";
+     hypothesis_part:
+       {["VUONG",a,b]}
+     end_hypothesis_part
+     goal_part:
+       {c^2 = a^2 + b^2,["VUONG","Object",C],GocC= Pi/2,["VUONG",VECTO(A,C),VECTO(B,C)]}
+     end_goal_part
+  end_rule
+
+ begin_rule 21
+     kind_rule = "";
+     hypothesis_part:
+       {["VUONG","Object",C]}
+     end_hypothesis_part
+     goal_part:
+       {c^2 = a^2 + b^2,["VUONG",a,b],GocC= Pi/2,["VUONG",VECTO(A,C),VECTO(B,C)]}
+     end_goal_part
+  end_rule
+
+  begin_rule 22
+     kind_rule = "";
+     hypothesis_part:
+       {GocA = GocB, GocA = GocC}
+     end_hypothesis_part
+     goal_part:
+       {GocA = Pi/6, GocB = Pi/6, GocC = Pi/6,["DEU","Object"]}
+     end_goal_part
+  end_rule
+
+  begin_rule 23
+     kind_rule = "";
+     hypothesis_part:
+       {GocA = GocB, GocB = GocC}
+     end_hypothesis_part
+     goal_part:
+       {GocA = Pi/6, GocB = Pi/6, GocC = Pi/6,["DEU","Object"]}
+     end_goal_part
+  end_rule
+
+  begin_rule 24
+     kind_rule = "";
+     hypothesis_part:
+       {GocA = GocC, GocB = GocC}
+     end_hypothesis_part
+     goal_part:
+       {GocA = Pi/6, GocB = Pi/6, GocC = Pi/6,["DEU","Object"]}
+     end_goal_part
+  end_rule
+
+begin_rule 25
+     kind_rule = "";
+     hypothesis_part:
+       {["DEU","Object"]}
+     end_hypothesis_part
+     goal_part:
+       {GocA = Pi/6, GocB = Pi/6, GocC = Pi/6,GocA = GocC, GocB = GocC,GocA = GocB}
+     end_goal_part
+  end_rule
+
+  begin_rule 26
+     kind_rule = "xac_dinh_doi_tuong";
+     hypothesis_part:
+       {a, b, c}
+     end_hypothesis_part
+     goal_part:
+       {"Object"}
+     end_goal_part
+  end_rule
+
+  begin_rule 27
+     kind_rule = "xac_dinh_doi_tuong";
+     hypothesis_part:
+       {a, b, GocC}
+     end_hypothesis_part
+     goal_part:
+       {"Object"}
+     end_goal_part
+  end_rule
+
+  begin_rule 28
+     kind_rule = "xac_dinh_doi_tuong";
+     hypothesis_part:
+       {a, c, GocB}
+     end_hypothesis_part
+     goal_part:
+       {"Object"}
+     end_goal_part
+  end_rule
+
+  begin_rule 29
+     kind_rule = "xac_dinh_doi_tuong";
+     hypothesis_part:
+       {c, b, GocA}
+     end_hypothesis_part
+     goal_part:
+       {"Object"}
+     end_goal_part
+  end_rule
+
+  begin_rule 30
+     kind_rule = "xac_dinh_doi_tuong";
+     hypothesis_part:
+       {a, GocB, GocC}
+     end_hypothesis_part
+     goal_part:
+       {"Object"}
+     end_goal_part
+  end_rule
+
+  begin_rule 31
+     kind_rule = "xac_dinh_doi_tuong";
+     hypothesis_part:
+       {c, GocA, GocB}
+     end_hypothesis_part
+     goal_part:
+       {"Object"}
+     end_goal_part
+  end_rule
+
+  begin_rule 32
+     kind_rule = "xac_dinh_doi_tuong";
+     hypothesis_part:
+       {b, GocA, GocC}
+     end_hypothesis_part
+     goal_part:
+       {"Object"}
+     end_goal_part
+  end_rule
+
+  end_rules
+
+  begin_functions 
+         TRONGTAM(A1,B1,C1)
+         TRUCTAM(A1,B1,C1)
+  end_functions
+
+end_object
+

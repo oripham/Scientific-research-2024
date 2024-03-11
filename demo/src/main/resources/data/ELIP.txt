@@ -1,0 +1,23 @@
+begin_object: ELIP;
+  
+  begin_variables
+    A1, A2, B1, B2, F1, F2, O: DIEM;  # Toa do cac dinh, tieu diem va tam cua Elip
+    a, b, c, e, x: real;  # Ban truc lon, ban truc nho, tam sai, duong chuan
+    f: PTCT_E;  # Phuong trinh Elip dang chinh tac
+  end_variables
+
+  begin_properties
+  end_properties
+
+  begin_computation_relations
+  end_computation_relations
+
+  begin_rules
+  end_rules
+
+  begin_functions  
+
+  end_functions
+
+end_object
+

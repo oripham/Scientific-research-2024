@@ -1,0 +1,23 @@
+begin_object: HYPERBOL;
+  
+  begin_variables
+    A1, A2, F1, F2, O: DIEM;  # Toa do cac dinh tren truc thuc, tieu diem va tam cua Hyperbol
+    a, b, c, e, x: real;  # Ban truc thuc, ban truc ao, tam sai, duong chuan
+    f: PTCT_h;  # Phuong trinh Hyperbol dang chinh tac
+  end_variables
+
+  begin_properties
+  end_properties
+
+  begin_computation_relations
+  end_computation_relations
+
+  begin_rules
+  end_rules
+
+  begin_functions  
+
+  end_functions
+
+end_object
+

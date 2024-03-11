@@ -1,0 +1,22 @@
+begin_object: DUONGTRON;
+  
+  begin_variables
+    I: DIEM;
+    R: real;
+    f: PTDTR;
+  end_variables  
+
+  begin_properties
+  end_properties
+
+  begin_computation_relations
+  end_computation_relations
+
+  begin_rules
+  end_rules
+
+  begin_functions  
+  end_functions
+
+end_object
+

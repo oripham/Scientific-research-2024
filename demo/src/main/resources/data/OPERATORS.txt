@@ -1,0 +1,12 @@
+begin_Operators
+[+,VECTO,[VECTO,VECTO]]
+[-,VECTO,[VECTO,VECTO]]
+[*,VECTO, [REAL,VECTO]]
+[.,REAL,[VECTO,VECTO]]
+[+,REAL, [DOAN,DOAN]]
+[-,REAL, [DOAN,DOAN]]
+[*,REAL, [DOAN,DOAN]]
+[/,REAL,[DOAN,DOAN]]
+[+,REAL,[GOC,GOC]]
+[-,REAL,[GOC,GOC]]
+end_Operators

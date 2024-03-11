@@ -1,0 +1,25 @@
+begin_object: VECTO[x,y];
+  x, y: real;
+
+  begin_variables
+    a: real;
+  end_variables
+
+  begin_construct_relations
+    a = sqrt(x^2+y^2);
+  end_construct_relations
+
+  begin_properties 
+  end_properties
+
+  begin_computation_relations
+  end_computation_relations
+
+  begin_rules
+  end_rules
+
+  begin_functions
+  end_functions
+
+end_object
+

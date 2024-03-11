@@ -1,0 +1,764 @@
+begin_rules
+
+  # 2 vecto bang nhau
+  begin_rule
+    kind_rule = "VECTO";
+    va,vb:VECTO;
+    hypothesis_part:  
+      {["=",va,vb]}
+    end_hypothesis_part
+    goal_part:      
+      {(va.x)=(vb.x),(va.y)=(vb.y)}
+    end_goal_part
+  end_rule
+
+  begin_rule
+    kind_rule = "VECTO";
+    va,vb:VECTO;
+    hypothesis_part:  
+    {(va.x)=(vb.x),(va.y)=(vb.y)}
+    end_hypothesis_part
+    goal_part:      
+      {["=",va,vb]}
+    end_goal_part
+  end_rule
+
+  # 2 vecto cung phuong
+  begin_rule
+    kind_rule = "VECTO";
+    va,vb:VECTO;
+    hypothesis_part:  
+      {["CUNG_PHUONG",va,vb]}
+    end_hypothesis_part
+    goal_part:      
+      {(va.x)*(vb.y)-(va.y)*(vb.x)=0}
+    end_goal_part
+  end_rule
+
+  begin_rule 
+    kind_rule = "VECTO";
+    va,vb:VECTO;
+    hypothesis_part:  
+       {(va.x)*(vb.y)-(va.y)*(vb.x)=0}
+    end_hypothesis_part
+    goal_part:          
+       {["CUNG_PHUONG",va,vb]}
+    end_goal_part
+  end_rule
+  
+  # 2 vecto vuong goc
+  begin_rule 
+    kind_rule = "VECTO";
+    va,vb:VECTO;
+    hypothesis_part:  
+       {["VUONG",va,vb]}
+    end_hypothesis_part
+    goal_part:          
+       {(va.x)*(vb.x)+(va.y)*(vb.y)=0}
+    end_goal_part
+  end_rule  
+
+  begin_rule 
+    kind_rule = "VECTO";
+    va,vb:VECTO;
+    hypothesis_part:  
+       {(va.x)*(vb.x)+(va.y)*(vb.y)=0}
+    end_hypothesis_part
+    goal_part:          
+       {["VUONG",va,vb]}
+    end_goal_part
+  end_rule  
+ 
+  # quan he 3 vecto
+  begin_rule 	# Hai vecto b, c cung vuong goc voi vecto a thi vecto b songsong vecto c
+     kind_rule = "VECTO";
+     va,vb,vc:VECTO;
+     hypothesis_part:  
+        {["VUONG",va,vb], ["VUONG",va,vc]}
+     end_hypothesis_part
+     goal_part: 
+        {["SSONG",vb,vc]}
+     end_goal_part     
+  end_rule
+  
+   begin_rule 
+     kind_rule = "VECTO";
+     va, vb, vc: VECTO;
+     hypothesis_part:  
+        {["VUONG",va,vb],["SSONG",vb,vc]}
+     end_hypothesis_part
+     goal_part: 
+        {["VUONG",va,vc]}
+     end_goal_part     
+  end_rule
+  
+  # quan he giua 3 doan thang
+  begin_rule 
+     kind_rule = "DOAN";
+     da, db, dc: DOAN;
+     hypothesis_part:  
+        {["VUONG",da,db], ["VUONG",da,dc]}
+     end_hypothesis_part
+     goal_part: 
+        {["SSONG",db,dc]}
+     end_goal_part
+  end_rule
+
+  begin_rule
+     kind_rule = "DOAN";
+     da, db, dc: DOAN;
+     hypothesis_part:
+       {["SSONG",da,db], ["VUONG",da,dc]}
+     end_hypothesis_part
+     goal_part:
+       {["VUONG",db,dc]}
+     end_goal_part
+  end_rule
+
+   # quan he giua 2 vecto va 1 duong thang 
+  begin_rule
+     kind_rule = "DUONGTHANG";
+     va,vb: VECTO
+     dt:DUONGTHANG     
+     hypothesis_part:
+        {["SSONG",va,vb],["SSONG",va,dt]}
+     end_hypothesis_part
+     goal_part:
+       {["SSONG",vb,dt]}
+     end_goal_part
+  end_rule
+   
+  # quan he duong thang ssong voi doan thi se ssong voi vecto chi phuong cua doan do
+  begin_rule
+     kind_rule = "DUONGTHANG";     
+     S,T: DIEM    
+     dt:DUONGTHANG    
+     hypothesis_part:
+        {["SSONG",dt,DOAN[S,T]]}
+     end_hypothesis_part
+     goal_part:
+       {["SSONG",dt,VECTO(S,T)]}
+     end_goal_part
+  end_rule
+
+  # quan he duong thang vuong goc voi doan thi se vuong goc voi vecto chi phuong cua doan do
+  begin_rule
+     kind_rule = "DUONGTHANG";
+     S,T: DIEM    
+     dt:DUONGTHANG    
+     hypothesis_part:
+        {["VUONG",dt,DOAN[S,T]]}
+     end_hypothesis_part
+     goal_part:
+       {["VUONG",dt,VECTO(S,T)]}
+     end_goal_part
+  end_rule
+  
+  # giao diem cua 2 duong thang
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    dt1,dt2:DUONGTHANG
+    W:DIEM;
+    hypothesis_part:  
+        {["THUOC",W,dt1],["THUOC",W,dt2]}
+    end_hypothesis_part
+    goal_part: 
+      {W=GIAODIEM(dt1,dt2)}
+    end_goal_part
+  end_rule
+
+  # giao diem cua duong thang va doan thang
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    dt1:DUONGTHANG
+    dt2:DOAN
+    W:DIEM;
+    hypothesis_part:  
+        {["THUOC",W,dt1],["THUOC",W,dt2]}
+    end_hypothesis_part
+    goal_part: 
+      {W=GIAODIEM(dt1,dt2)}
+    end_goal_part
+  end_rule
+  
+  # giao diem cua 2 doan thang
+  begin_rule
+    kind_rule = "DOAN";    
+    dt1,dt2:DOAN
+    W:DIEM;
+    hypothesis_part:  
+        {["THUOC",W,dt1],["THUOC",W,dt2]}
+    end_hypothesis_part
+    goal_part: 
+      {W=GIAODIEM(dt1,dt2)}
+    end_goal_part
+  end_rule
+
+  # giao diem cua duong thang voi duong tron_dang tiep xuc
+  begin_rule
+    kind_rule = "DUONGTHANG";    
+    dt:DUONGTHANG
+    dtr:DUONGTRON
+    W:DIEM;
+    hypothesis_part:  
+        {["THUOC",W,dt],["THUOC",W,dtr]}
+    end_hypothesis_part
+    goal_part: 
+      {W=GIAODIEM(dt,dtr)}
+    end_goal_part
+  end_rule
+	
+  # giao diem cua duong thang voi elip_dang tiep xuc
+  begin_rule
+    kind_rule = "DUONGTHANG";    
+    dt:DUONGTHANG
+    el:ELIP
+    W:DIEM;
+    hypothesis_part:  
+        {["THUOC",W,dt],["THUOC",W,el]}
+    end_hypothesis_part
+    goal_part: 
+      {W=GIAODIEM(dt,el)}
+    end_goal_part
+  end_rule
+
+  # giao diem cua duong thang voi parabol_dang tiep xuc
+  begin_rule
+    kind_rule = "DUONGTHANG";    
+    dt:DUONGTHANG
+    par:PARABOL
+    W:DIEM;
+    hypothesis_part:  
+        {["THUOC",W,dt],["THUOC",W,par]}
+    end_hypothesis_part
+    goal_part: 
+      {W=GIAODIEM(dt,par)}
+    end_goal_part
+  end_rule
+
+
+ # ----------- viet phuong trinh doan thang-----------------
+
+  # doan di qua mot diem va vuong goc voi 1 vecto xac dinh
+  begin_rule
+    kind_rule = "DOAN";
+    M:DIEM;
+    dt:DOAN;
+    n:VECTO;
+    hypothesis_part:  
+        {M,n,["THUOC",M,dt],["VUONG",n,dt]}
+    end_hypothesis_part
+     goal_part: 
+      {dt}
+    end_goal_part
+    proc:dt.f=ptdtvg[M,n];    
+  end_rule
+
+  # doan di qua mot diem va ssong voi mot vecto xac dinh
+  begin_rule
+    kind_rule = "DOAN";
+    M:DIEM;
+    a:VECTO;
+    dt:DOAN; 
+    hypothesis_part:  
+        {M,a,["THUOC",M,dt],["SSONG",a,dt]}
+    end_hypothesis_part
+    goal_part: 
+      {dt}
+    end_goal_part
+    proc:dt.f=ptdtss[M,a];    
+  end_rule
+
+  # doan di qua 1 diem va ssong voi 1 duong xac dinh khac
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M:DIEM;
+    dt2:DUONGTHANG;
+    dt1: DOAN 
+    hypothesis_part:  
+        {M,["THUOC",M,dt1],["SSONG",dt1,dt2],dt2}
+    end_hypothesis_part
+    goal_part: 
+      {dt1}
+    end_goal_part
+    proc:dt1.f=ptdssdt[M,dt2];    
+  end_rule
+  
+  # doan di qua 1 diem va vuong goc voi 1 duong xac dinh khac
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M:DIEM;
+    dt2:DUONGTHANG;
+    dt1:DOAN
+    hypothesis_part:  
+        {M,["THUOC",M,dt1],["VUONG",dt1,dt2],dt2}
+    end_hypothesis_part
+    goal_part: 
+      {dt1}
+    end_goal_part
+    proc:dt1.f=ptdvgdt[M,dt2];    
+  end_rule
+
+  # doan di qua 1 diem va vuong goc voi 1 doan xac dinh khac
+  begin_rule
+    kind_rule = "DOAN";
+    M:DIEM;
+    dt1,dt2:DOAN
+    hypothesis_part:  
+        {M,["THUOC",M,dt1],["VUONG",dt1,dt2],dt2}
+    end_hypothesis_part
+    goal_part: 
+      {dt1}
+    end_goal_part
+    proc:dt1.f=ptdvgdt[M,dt2];    
+  end_rule	
+
+  # doan di qua 1 diem va ssong voi 1 doan xac dinh khac
+  begin_rule
+    kind_rule = "DOAN";
+    M:DIEM;
+    dt1,dt2:DOAN
+    hypothesis_part:  
+        {M,["THUOC",M,dt1],["SSONG",dt1,dt2],dt2}
+    end_hypothesis_part
+    goal_part: 
+      {dt1}
+    end_goal_part
+    proc:dt1.f=ptdssdt[M,dt2];    
+  end_rule	
+
+
+   #------------------- viet phuong trinh duong thang ---------------------
+
+  # duong thang di qua mot diem va vuong goc voi 1 vecto xac dinh
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M:DIEM;
+    dt:DUONGTHANG;
+    n:VECTO;
+    hypothesis_part:  
+        {M,n,["THUOC",M,dt],["VUONG",n,dt]}
+    end_hypothesis_part
+     goal_part: 
+      {dt}
+    end_goal_part
+    proc:dt.f=ptdtvg[M,n];    
+  end_rule
+
+  # duong thang di qua mot diem va ssong voi mot vecto xac dinh
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M:DIEM;
+    a:VECTO;
+    dt:DUONGTHANG; 
+    hypothesis_part:  
+        {M,a,["THUOC",M,dt],["SSONG",a,dt]}
+    end_hypothesis_part
+    goal_part: 
+      {dt}
+    end_goal_part
+    proc:dt.f=ptdtss[M,a];    
+  end_rule
+  
+  # duong thang di qua mot diem va ssong voi mot vecto cua 2 diem_VECTO(DIEM,DIEM) 
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M,S,T:DIEM;
+    dt:DUONGTHANG; 
+    hypothesis_part:  
+        {M,VECTO(S,T),["THUOC",M,dt],["SSONG",VECTO(S,T),dt]}
+    end_hypothesis_part
+    goal_part: 
+      {dt}
+    end_goal_part
+    proc:dt.f=ptdtss[M,VECTO(S,T)];
+  end_rule
+
+  # duong thang di qua mot diem va vuong goc voi mot vecto cua 2 diem_VECTO(DIEM,DIEM) 
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M,S,T:DIEM;
+    dt:DUONGTHANG; 
+    hypothesis_part:  
+        {M,VECTO(S,T),["THUOC",M,dt],["VUONG",VECTO(S,T),dt]}
+    end_hypothesis_part
+    goal_part: 
+      {dt}
+    end_goal_part
+    proc:dt.f=ptdtvg[M,VECTO(S,T)];
+  end_rule
+
+  # duong thang di qua 2 diem
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M,N:DIEM;
+    dt:DUONGTHANG; 
+    hypothesis_part:  
+        {M,N,["THUOC",M,dt],["THUOC",N,dt]}
+    end_hypothesis_part
+    goal_part: 
+      {dt}
+    end_goal_part
+    proc:dt.f=ptdt2d[M,N];    
+  end_rule
+ 
+  # duong thang di qua 1 diem va ssong voi 1 duong thang xac dinh khac
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M:DIEM;
+    dt1,dt2:DUONGTHANG; 
+    hypothesis_part:  
+        {M,["THUOC",M,dt1],["SSONG",dt1,dt2],dt2}
+    end_hypothesis_part
+    goal_part: 
+      {dt1}
+    end_goal_part
+    proc:dt1.f=ptdssdt[M,dt2];    
+  end_rule
+
+
+  # duong thang di qua 1 diem va vuong goc voi 1 duong thang xac dinh khac
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M:DIEM;
+    dt1,dt2:DUONGTHANG;
+    hypothesis_part:  
+        {M,["THUOC",M,dt1],["VUONG",dt1,dt2],dt2}
+    end_hypothesis_part
+    goal_part: 
+      {dt1}
+    end_goal_part
+    proc:dt1.f=ptdvgdt[M,dt2];    
+  end_rule
+
+  # duong thang di qua 1 diem va ssong voi 1 doan xac dinh khac
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M:DIEM;
+    dt1:DUONGTHANG;
+    dt2: DOAN 
+    hypothesis_part:  
+        {M,["THUOC",M,dt1],["SSONG",dt1,dt2],dt2}
+    end_hypothesis_part
+    goal_part: 
+      {dt1}
+    end_goal_part
+    proc:dt1.f=ptdssdt[M,dt2];    
+  end_rule
+  
+  # duong thang di qua 1 diem va vuong goc voi 1 doan xac dinh khac
+  begin_rule
+    kind_rule = "DUONGTHANG";
+    M:DIEM;
+    dt1:DUONGTHANG;
+    dt2:DOAN
+    hypothesis_part:  
+        {M,["THUOC",M,dt1],["VUONG",dt1,dt2],dt2}
+    end_hypothesis_part
+    goal_part: 
+      {dt1}
+    end_goal_part
+    proc:dt1.f=ptdvgdt[M,dt2];    
+  end_rule
+
+  
+  
+ # tinh chat duong trung truc: cach deu 2 diem
+ begin_rule
+    kind_rule = "DUONGTHANG";
+    A1,B1,M1:DIEM;
+    dt1:DUONGTHANG;
+    hypothesis_part:  
+        {["THUOC",M1,dt1],dt1=TRUNGTRUC(A1,B1)}
+    end_hypothesis_part
+    goal_part: 
+      {KHOANGCACH(M1,A1)=KHOANGCACH(M1,B1)}
+    end_goal_part
+  end_rule
+
+ begin_rule
+    kind_rule = "DUONGTHANG";
+    A1,B1:DIEM;
+    dt1:DUONGTHANG;
+    hypothesis_part:  
+        {dt1=TRUNGTRUC(A1,B1)}
+    end_hypothesis_part
+    goal_part: 
+      {["VUONG",dt1,DOAN[A1,B1]], KHOANGCACH(A1,dt1)=KHOANGCACH(B1,dt1)}
+    end_goal_part
+  end_rule
+
+
+#-----------CAC LUAT VE TAM GIAC--------------------------------------
+ 
+# duong trung binh cua tam giac
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,M1,N1:DIEM
+    O1: TAMGIAC
+    hypothesis_part:  
+        {M1=TRUNGDIEM(A1,B1), N1=TRUNGDIEM(A1,C1), [O1,"TAMGIAC[A1,B1,C1]"]}
+    end_hypothesis_part
+    goal_part: 
+      {["TRUNGBINH",DOAN[M1,N1],O1,DOAN[B1,C1]]}
+    end_goal_part
+  end_rule
+
+# tinh chat cua duong trung binh
+begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,M1,N1:DIEM
+    O1: TAMGIAC
+    hypothesis_part:  
+        {["TRUNGBINH",DOAN[M1,N1],O1,DOAN[B1,C1]], [O1,"TAMGIAC[A1,B1,C1]"]}
+    end_hypothesis_part
+    goal_part: 
+      {["SSONG",DOAN[M1,N1],DOAN[B1,C1]], DOAN[M1,N1].a=DOAN[B1,C1].a/2}
+    end_goal_part
+  end_rule
+
+# duong cao cua tam giac
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1, H1:DIEM;
+    O1:TAMGIAC;
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], ["DUONGCAO",DOAN[A1,H1],A1,O1]}
+    end_hypothesis_part
+    goal_part: 
+      {["VUONG",DOAN[A1,H1],DOAN[B1,C1]], ["THUOC",H1,DOAN[B1,C1]]}
+    end_goal_part
+  end_rule
+
+
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1:DIEM;
+    dt1:DOAN 
+    O1:TAMGIAC;
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], ["DUONGCAO",dt1,A1,O1]}
+    end_hypothesis_part
+    goal_part: 
+      {["VUONG",dt1,DOAN[B1,C1]], ["THUOC",A1,dt1]}
+    end_goal_part
+  end_rule
+
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,H1:DIEM;
+    O1:TAMGIAC;
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], ["VUONG",DOAN[A1,H1],DOAN[B1,C1]], ["THUOC",H1,DOAN[B1,C1]]}
+    end_hypothesis_part
+    goal_part: 
+      {["DUONGCAO",DOAN[A1,H1],A1,O1]}
+    end_goal_part
+  end_rule
+ 
+ # tinh chat duong trung tuyen
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,M1:DIEM;
+    O1:TAMGIAC
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], ["TRUNGTUYEN",DOAN[A1,M1],A1,O1]}
+    end_hypothesis_part
+    goal_part: 
+      {M1=TRUNGDIEM(B1,C1)}
+    end_goal_part
+  end_rule
+
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,M1:DIEM;
+    O1:TAMGIAC
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], M1=TRUNGDIEM(B1,C1)}
+    end_hypothesis_part
+    goal_part: 
+       {["TRUNGTUYEN",DOAN[A1,M1],A1,O1]}
+    end_goal_part
+  end_rule
+
+ # quan he giua trung tuyen va trong tam
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,G1, M1:DIEM;
+    O1:TAMGIAC
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], ["TRUNGTUYEN",DOAN[A1,M1],A1,O1], G1=TRONGTAM(A1,B1,C1)}
+    end_hypothesis_part
+    goal_part: 
+       {["THUOC",G1,DOAN[A1,M1]], VECTO(A1,G1)=2*VECTO(G1,M1), DOAN[A1,G1].a=2*DOAN[G1,M1].a}
+    end_goal_part
+  end_rule
+
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,M1,N1:DIEM;
+    O1:TAMGIAC
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], ["TRUNGTUYEN",DOAN[B1,M1],B1,O1], ["TRUNGTUYEN",DOAN[C1,N1],C1,O1]}
+    end_hypothesis_part
+    goal_part: 
+       {TRONGTAM(A1,B1,C1)=GIAODIEM(DOAN[B1,M1],DOAN[C1,N1])}
+    end_goal_part
+  end_rule
+
+ # quan he giua trung diem va trung truc
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,M1:DIEM;
+    O1:TAMGIAC
+    d1:DUONGTHANG 
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], M1=TRUNGDIEM(B1,C1), d1=TRUNGTRUC(B1,C1)}
+    end_hypothesis_part
+    goal_part: 
+       {["THUOC",M1,d1],["VUONG",d1,DOAN[B1,C1]]}
+    end_goal_part
+  end_rule
+
+begin_rule
+    kind_rule = "TAMGIACCAN";
+    A1,B1,C1:DIEM;
+    O1:TAMGIAC
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"],["CAN",O1,A1]}
+    end_hypothesis_part
+    goal_part: 
+      {GOC(DOAN[A1,B1],DOAN[B1,C1])=GOC(DOAN[A1,C1],DOAN[B1,C1]), KHOANGCACH(A1,B1)=KHOANGCACH(A1,C1)}
+    end_goal_part
+  end_rule
+
+begin_rule
+    kind_rule = "TAMGIACCAN";
+    A1,B1,C1,G1:DIEM;
+    O1:TAMGIAC
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"],["CAN",O1,A1], G1=TRONGTAM(A1,B1,C1)}
+    end_hypothesis_part
+    goal_part: 
+      {["THUOC",G1,DOAN[A1,G1]],["VUONG",DOAN[A1,G1],DOAN[B1,C1]],
+	 TRUNGDIEM(B1,C1)=GIAODIEM(DOAN[A1,G1],DOAN[B1,C1])}
+    end_goal_part
+  end_rule
+
+
+begin_rule
+    kind_rule = "TAMGIACCAN";
+    A1,B1,C1,M1:DIEM;
+    O1:TAMGIAC
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"],["CAN",O1,A1],  ["TRUNGTUYEN",DOAN[A1,M1],A1,O1]}
+    end_hypothesis_part
+    goal_part: 
+      {["DUONGCAO",DOAN[A1,M1],A1,O1], DOAN[A1,M1]=TRUNGTRUC(B1,C1)}
+    end_goal_part
+  end_rule
+ 
+ # tinh chat duong phan giac trong
+ begin_rule
+    kind_rule = "TAMGIAC";
+    A1,B1,C1,D1:DIEM;
+    O1:TAMGIAC;
+    hypothesis_part:  
+        {[O1,"TAMGIAC[A1,B1,C1]"], ["PHANGIAC",DOAN[A1,D1],A1,O1]}
+    end_hypothesis_part
+    goal_part: 
+      {GOC(DOAN[A1,B1],DOAN[A1,D1])=GOC(DOAN[A1,C1],DOAN[A1,D1])}
+    end_goal_part
+  end_rule
+
+ # thanh lap phuong trinh
+ begin_rule
+    kind_rule = "thanh_lap_phuong_trinh";
+    M:DIEM;
+    dt:DUONGTHANG;
+    hypothesis_part:  
+        {["THUOC",M,dt]}
+    end_hypothesis_part
+    goal_part: 
+        {}
+    end_goal_part
+        proc: tlpt[M,dt]
+  end_rule
+
+ begin_rule
+    kind_rule = "thanh_lap_phuong_trinh";
+    M:DIEM;
+    dt:DOAN;
+    hypothesis_part:  
+        {["THUOC",M,dt]}
+    end_hypothesis_part
+    goal_part: 
+        {}
+    end_goal_part
+        proc: tlpt[M,dt]
+  end_rule
+
+  begin_rule
+    kind_rule = "thanh_lap_phuong_trinh";
+    dt1,dt2:DUONGTHANG;
+    hypothesis_part:  
+        {["SSONG",dt1,dt2]}
+    end_hypothesis_part
+    goal_part: 
+        {}
+    end_goal_part
+        proc: tlptdssd[dt1,dt2]
+  end_rule
+
+  begin_rule
+    kind_rule = "thanh_lap_phuong_trinh";
+    dt1,dt2:DOAN;
+    hypothesis_part:  
+        {["SSONG",dt1,dt2]}
+    end_hypothesis_part
+    goal_part: 
+        {}
+    end_goal_part
+        proc: tlptdssd[dt1,dt2]
+  end_rule
+   
+  begin_rule
+    kind_rule = "thanh_lap_phuong_trinh";
+    dt1,dt2:DUONGTHANG;
+    hypothesis_part:  
+        {["VUONG",dt1,dt2]}
+    end_hypothesis_part
+    goal_part: 
+        {}
+    end_goal_part
+        proc: tlptdvgd[dt1,dt2]
+  end_rule
+
+ begin_rule
+    kind_rule = "thanh_lap_phuong_trinh";
+    dt1,dt2:DOAN;
+    hypothesis_part:  
+        {["VUONG",dt1,dt2]}
+    end_hypothesis_part
+    goal_part: 
+        {}
+    end_goal_part
+        proc: tlptdvgd[dt1,dt2]
+  end_rule
+
+ begin_rule
+    kind_rule = "thanh_lap_phuong_trinh";
+    A,B,C: DIEM
+    O: TAMGIAC
+    hypothesis_part:  
+        {["VUONG",O,C], [O,"TAMGIAC[A,B,C]"]}
+    end_hypothesis_part
+    goal_part: 
+        {}
+    end_goal_part
+        proc: tvh[A,B,C];
+  end_rule
+
+
+			
+end_rules

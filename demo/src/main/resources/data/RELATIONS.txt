@@ -1,0 +1,90 @@
+begin_Relations
+
+[TRUNG,DIEM,DIEM],{"phan xa","doi xung","bac cau"}
+[THANG, DIEM, DIEM, DIEM],{"doi xung"}
+[THUOC,DIEM,DOAN],{}
+[THUOC,DIEM,DUONGTHANG],{}
+[THUOC,DIEM,DUONGTRON],{}
+[THUOC,DIEM,ELIP],{}
+[THUOC,DIEM,HYPERBOL],{}
+[THUOC,DIEM,PARABOL],{}
+[CUNG_PHIA,DIEM,DIEM,DOAN],{}
+[CUNG_PHIA,DIEM,DIEM,DUONGTHANG],{}
+[TRONG,DIEM,DUONGTRON],{}
+[NGOAI,DIEM,DUONGTRON],{}
+
+["=",VECTO,VECTO],{"phan xa","doi xung","bac cau"}
+[VUONG,VECTO,VECTO],{"doi xung"}
+[CUNG_PHUONG,VECTO,VECTO],{"phan xa","doi xung","bac cau"}
+[SSONG,VECTO,VECTO],{"doi xung"}
+[SSONG,VECTO,DUONGTHANG],{"doi xung"}
+[SSONG,VECTO,DOAN],{"doi xung"}
+[VUONG,VECTO,DUONGTHANG],{"doi xung"}
+[VUONG,VECTO,DOAN],{"doi xung"}
+
+[CAT,DUONGTHANG,DUONGTHANG],{"doi xung"}
+[SSONG,DUONGTHANG,DUONGTHANG],{"doi xung", "bac cau"}
+[TRUNG,DUONGTHANG,DUONGTHANG],{"phan xa","doi xung", "bac cau"}
+[VUONG,DUONGTHANG,DUONGTHANG],{"doi xung"}
+
+[CAT,DOAN,DOAN],{"doi xung"}
+[SSONG,DOAN,DOAN],{"doi xung","bac cau"}
+[TRUNG,DOAN,DOAN],{"phan xa", "doi xung","bac cau"}
+[VUONG,DOAN,DOAN],{"doi xung"}
+
+[SSONG,DUONGTHANG,DOAN],{"doi xung"}
+[VUONG,DUONGTHANG,DOAN],{"doi xung"}
+[CAT,DUONGTHANG,DOAN],{"doi xung"}
+
+
+[VUONG,TAMGIAC,DIEM],{}
+[CAN,TAMGIAC,DIEM],{}
+
+
+[DUONGCAO,DOAN,DIEM,TAMGIAC],{}
+[DUONGCAO,DUONGTHANG,DIEM,TAMGIAC],{}
+
+[TRUNGTUYEN,DOAN,DIEM,TAMGIAC],{}
+[TRUNGTUYEN,DUONGTHANG,DIEM,TAMGIAC],{}
+
+[TRUNGBINH,DOAN,TAMGIAC,DOAN],{}
+
+[PHANGIAC,DOAN,DIEM,TAMGIAC],{}
+[PHANGIAC,DUONGTHANG,DIEM,TAMGIAC],{}
+
+[CAT,DUONGTHANG,DUONGTRON],{"doi xung"}
+[CAT,DUONGTHANG,ELIP],{"doi xung"}
+[CAT,DUONGTHANG,HYPERBOL],{"doi xung"}
+[CAT,DUONGTHANG,PARABOL],{"doi xung"}
+[CAT,DOAN,DUONGTRON],{"doi xung"}
+[CAT,DOAN,ELIP],{"doi xung"}
+[CAT,DOAN,HYPERBOL],{"doi xung"}
+[CAT,DOAN,PARABOL],{"doi xung"}
+[CAT,DUONGTRON,DUONGTRON],{"doi xung"}
+[CAT,DUONGTRON,ELIP],{"doi xung"}
+[CAT,DUONGTRON,HYPERBOL],{"doi xung"}
+[CAT,DUONGTRON,PARABOL],{"doi xung"}
+[CAT,ELIP,HYPERBOL],{"doi xung"}
+[CAT,ELIP,PARABOL],{"doi xung"}
+[CAT,HYPERBOL,PARABOL],{"doi xung"}
+
+[TIEPXUC,DUONGTHANG,DUONGTRON],{"doi xung"}
+[TIEPXUC,DUONGTHANG,ELIP],{"doi xung"}
+[TIEPXUC,DUONGTHANG,HYPERBOL],{"doi xung"}
+[TIEPXUC,DUONGTHANG,PARABOL],{"doi xung"}
+
+[TRUNG,DUONGTRON,DUONGTRON],{"phan xa","doi xung", "bac cau"}
+[TRUNG,ELIP,ELIP],{"phan xa","doi xung", "bac cau"}
+[TRUNG,HYPERBOL,HYPERBOL],{"phan xa","doi xung", "bac cau"}
+[TRUNG,PARABOL,PARABOL],{"phan xa","doi xung", "bac cau"}
+
+[NGOAI,DUONGTRON,DUONGTRON],{"doi xung"}
+[TRONG,DUONGTRON,DUONGTRON],{"doi xung"}
+
+[GOCTAM,GOC,DUONGTRON],{}
+[GOCNOITIEP,GOC,DUONGTRON],{}
+[BU,GOC,GOC],{"doi xung"}
+[PHU,GOC,GOC],{"doi xung"}
+[DOI,GOC,GOC],{"doi xung"}
+
+end_Relations

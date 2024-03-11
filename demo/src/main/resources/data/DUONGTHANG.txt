@@ -1,0 +1,35 @@
+begin_object: DUONGTHANG;
+  
+  begin_variables
+    f: PTDT_TQ;
+  end_variables
+
+  begin_construct_relations
+  end_construct_relations
+
+  begin_properties    
+  end_properties
+
+  begin_computation_relations  
+  end_computation_relations
+
+  begin_rules
+
+    begin_rule
+      kind_rule = "xac_dinh_doi_tuong";
+      f:PTDT_TQ
+      hypothesis_part:  
+        {f}
+      end_hypothesis_part
+      goal_part: 
+        {"Object"}
+      end_goal_part
+    end_rule
+
+  end_rules
+
+  begin_functions
+  end_functions
+
+end_object
+

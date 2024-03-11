@@ -1,0 +1,467 @@
+begin_functions
+  begin_function: VECTO(A,B)
+    A,B: DIEM
+    return AB:VECTO
+    begin_proc       
+      return [B[1]-A[1],B[2]-A[2]];
+    end_proc
+    properties 
+    end_properties
+  end_function
+  
+  begin_function: TRUNGDIEM(A,B)
+    A,B: DIEM
+    return W:DIEM
+    begin_proc
+      return [(A[1]+B[1])/2,(A[2]+B[2])/2];    
+    end_proc
+    properties
+      DOAN[A,W]=DOAN[B,W];
+      ["THUOC",W,DOAN[A,B]];     
+      KHOANGCACH(A,W)=KHOANGCACH(B,W) ;
+    end_properties
+  end_function
+
+# GIAO DIEM GIUA 2 DUONG THANG 
+  begin_function: GIAODIEM(h,g)
+    h,g: DUONGTHANG
+    return B:DIEM
+    begin_proc
+      local  temp;
+      temp:=solve({h,g},{x,y});
+      if temp = NULL then return NULL; fi;
+      if lhs(temp[1])=x then
+         return [rhs(temp[1]),rhs(temp[2])];fi;
+     return [rhs(temp[2]),rhs(temp[1])];     
+    end_proc 
+    properties
+      ["THUOC",B,h];
+      ["THUOC",B,g]; 
+    end_properties   
+  end_function  
+
+# GIAO DIEM GIUA DUONG THANG VA DOAN THANG
+  begin_function: GIAODIEM(g,h)
+    g: DOAN
+    h: DUONGTHANG 
+    return B:DIEM
+    begin_proc
+      local  temp;
+      temp:=solve({h,g},{x,y});
+      if temp = NULL then return NULL; fi;
+      if lhs(temp[1])=x then
+         return [rhs(temp[1]),rhs(temp[2])];fi;
+     return [rhs(temp[2]),rhs(temp[1])];
+    end_proc 
+    properties
+      ["THUOC",B,h];
+      ["THUOC",B,g]; 
+    end_properties   
+  end_function 
+
+# GIAO DIEM GIUA 2 DOAN THANG
+  begin_function: GIAODIEM(h,g)
+    h,g: DOAN
+    return B:DIEM
+    begin_proc
+      local  temp;
+      temp:=solve({h,g},{x,y});
+      if temp = NULL then return NULL; fi;
+      if lhs(temp[1])=x then
+         return [rhs(temp[1]),rhs(temp[2])];fi;
+     return [rhs(temp[2]),rhs(temp[1])];
+    end_proc 
+    properties
+      ["THUOC",B,h];
+      ["THUOC",B,g]; 
+    end_properties   
+  end_function 
+
+# KHOANG CACH TU 1 DIEM DEN DUONG THANG
+  begin_function: KHOANGCACH(A,f)
+    A: DIEM
+    f: DUONGTHANG
+    return 
+    begin_proc
+      return abs(subs({x = A[1],y = A[2]},lhs(f)))/sqrt((coeff(lhs(f),x)^2+coeff(lhs(f),y)^2));
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# KHOANG CACH TU 1 DIEM DEN DOAN THANG
+  begin_function: KHOANGCACH(A,f)
+    A: DIEM
+    f: DOAN
+    return 
+    begin_proc
+      return abs(subs({x = A[1],y = A[2]},lhs(f)))/sqrt((coeff(lhs(f),x)^2+coeff(lhs(f),y)^2));
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# KHOANG CACH GIUA 2 DIEM   
+  begin_function: KHOANGCACH(A,B)
+    A,B: DIEM
+    return 
+    begin_proc   
+      return sqrt((B[1]-A[1])^2+(B[2]-A[2])^2);
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# KHOANG CACH GIUA 2 DUONG THANG
+  begin_function: KHOANGCACH(g1,f1)
+    g1,f1: DUONGTHANG
+    return 
+    begin_proc
+      local A; 
+      if   coeff(lhs(g1),x)*coeff(lhs(f1),y)-coeff(lhs(g1),y)*coeff(lhs(f1),x) <>0 then return 0;fi; 
+      A:= [0,rhs(op(solve(eval(g1,x = 0),{y})))];
+      return abs(subs({x = A[1],y = A[2]},lhs(f1)))/sqrt((coeff(lhs(f1),x)^2+coeff(lhs(f1),y)^2));
+    end_proc
+    properties
+    end_properties
+  end_function
+  
+# KHOANG CACH GIUA TU 1 DOAN THANG DEN DUONG THANG
+  begin_function: KHOANGCACH(g1,f1)
+    g1: DOAN
+    f1: DUONGTHANG
+    return 
+    begin_proc
+      local A; 
+      if   coeff(lhs(g1),x)*coeff(lhs(f1),y)-coeff(lhs(g1),y)*coeff(lhs(f1),x) <>0 then return 0;fi; 
+      A:= [0,rhs(op(solve(eval(g1,x = 0),{y})))];
+      return abs(subs({x = A[1],y = A[2]},lhs(f1)))/sqrt((coeff(lhs(f1),x)^2+coeff(lhs(f1),y)^2));
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# KHOANG CACH GIUA 2 DOAN THANG
+  begin_function: KHOANGCACH(g1,f1)
+    g1,f1: DOAN
+    return 
+    begin_proc
+      local A; 
+      if   coeff(lhs(g1),x)*coeff(lhs(f1),y)-coeff(lhs(g1),y)*coeff(lhs(f1),x) <>0 then return 0;fi; 
+      A:= [0,rhs(op(solve(eval(g1,x = 0),{y})))];
+      return abs(subs({x = A[1],y = A[2]},lhs(f1)))/sqrt((coeff(lhs(f1),x)^2+coeff(lhs(f1),y)^2));
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# GOC GIUA 2 VECTO
+  begin_function: GOC(a,b)
+    a,b: VECTO
+    return 
+    begin_proc   
+      return arccos(abs((a[1]*b[1]+a[2]*b[2]))/(sqrt(a[1]^2+a[2]^2)*sqrt(b[1]^2+b[2]^2)));
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# GOC GIUA 2 DUONG THANG
+  begin_function: GOC(d1,d2)
+    d1,d2: DUONGTHANG
+    return 
+    begin_proc    
+      return arccos(abs(coeff(lhs(d1),x)*coeff(lhs(d2),x) + coeff(lhs(d1),y)*coeff(lhs(d2),y)) /(sqrt((coeff(lhs(d1),x))^2+(coeff(lhs(d1),y))^2) * sqrt((coeff(lhs(d2),x))^2+(coeff(lhs(d2),y))^2)));
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# GOC GIUA 2 DOAN THANG  
+  begin_function: GOC(d1,d2)
+    d1,d2: DOAN
+    return 
+    begin_proc    
+      return arccos(abs(coeff(lhs(d1),x)*coeff(lhs(d2),x) + coeff(lhs(d1),y)*coeff(lhs(d2),y)) /(sqrt((coeff(lhs(d1),x))^2+(coeff(lhs(d1),y))^2) * sqrt((coeff(lhs(d2),x))^2+(coeff(lhs(d2),y))^2)));
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# GOC GIUA DOAN THANG VA DUONG THANG
+  begin_function: GOC(d1,d2)
+    d1:DOAN
+    d2:DUONGTHANG
+    return 
+    begin_proc    
+      return arccos(abs(coeff(lhs(d1),x)*coeff(lhs(d2),x) + coeff(lhs(d1),y)*coeff(lhs(d2),y)) /(sqrt((coeff(lhs(d1),x))^2+(coeff(lhs(d1),y))^2) * sqrt((coeff(lhs(d2),x))^2+(coeff(lhs(d2),y))^2)));
+    end_proc
+    properties
+    end_properties
+  end_function
+
+# HINH CHIEU CUA DIEM LEN DUONG THANG
+  begin_function:HINHCHIEU(A,d)
+    A:DIEM
+    d:DUONGTHANG
+    return H:DIEM
+    begin_proc   
+          local d1,temp;          
+          d1:=ptdvgdt(A,d);
+          temp:=solve({d,d1},{x,y});
+          if temp = NULL then return NULL; fi;
+          if lhs(temp[1])=x then
+               return [rhs(temp[1]),rhs(temp[2])];fi;
+          return [rhs(temp[2]),rhs(temp[1])];
+          
+    end_proc
+    properties
+       ["THUOC",H,d];
+       ["VUONG",d,DOAN[A,H]] ;
+       KHOANGCACH(A,H)=KHOANGCACH(A,d);
+    end_properties
+  end_function
+
+# HINH CHIEU CUA DIEM LEN DOAN THANG
+  begin_function:HINHCHIEU(A,d)
+    A:DIEM
+    d:DOAN
+    return H:DIEM
+    begin_proc   
+          local d1,temp;          
+          d1:=ptdvgdt(A,d);
+          temp:=solve({d,d1},{x,y});
+          if temp = NULL then return NULL; fi;
+          if lhs(temp[1])=x then
+               return [rhs(temp[1]),rhs(temp[2])];fi;
+          return [rhs(temp[2]),rhs(temp[1])];
+          
+    end_proc
+    properties
+       ["THUOC",H,d];
+       ["VUONG",d,DOAN[A,H]] ;
+       KHOANGCACH(A,H)=KHOANGCACH(A,d);
+    end_properties
+  end_function
+
+# DIEM DOI XUNG CUA 1 DIEM QUA DUONG THANG
+  begin_function:DOIXUNG(A,d)
+    A:DIEM
+   d:DUONGTHANG
+    return A1:DIEM
+    begin_proc  
+         local d1,H;        
+         d1:=ptdvgdt(A,d);
+         H:=solve({d,d1},{x,y});
+         if H = NULL then return NULL; fi;
+         if lhs(H[1])=x then
+              H:=[rhs(H[1]),rhs(H[2])];
+         else
+              H:=[rhs(H[2]),rhs(H[1])];
+         fi;
+          return [2*H[1]-A[1],2*H[2]-A[2]];
+         
+    end_proc
+    properties
+      ["VUONG",d,DOAN[A,A1]];
+      KHOANGCACH(A,d)=KHOANGCACH(A1,d);
+      KHOANGCACH(A,d)=(1/2)*DOAN[A,A1].a  ;
+    end_properties
+  end_function
+
+# DIEM DOI XUNG CUA 1 DIEM QUA DOAN THANG
+  begin_function:DOIXUNG(A,d)
+    A:DIEM
+   d:DOAN
+    return A1:DIEM
+    begin_proc  
+         local d1,H;        
+         d1:=ptdvgdt(A,d);
+         H:=solve({d,d1},{x,y});
+         if H = NULL then return NULL; fi;
+         if lhs(H[1])=x then
+              H:=[rhs(H[1]),rhs(H[2])];
+         else
+              H:=[rhs(H[2]),rhs(H[1])];
+         fi;
+          return [2*H[1]-A[1],2*H[2]-A[2]];
+         
+    end_proc
+    properties
+      ["VUONG",d,DOAN[A,A1]];
+      KHOANGCACH(A,d)=KHOANGCACH(A1,d);
+      KHOANGCACH(A,d)=(1/2)*DOAN[A,A1].a  ;
+    end_properties
+  end_function
+
+# DIEM DOI XUNG CUA DIEM QUA 1 DIEM
+  begin_function:DOIXUNG(A,B)
+    A,B:DIEM   
+    return C:DIEM
+    begin_proc            
+       return [2*B[1]-A[1],2*B[2]-A[2]];       
+    end_proc
+    properties
+        B=TRUNGDIEM(A,C) ;
+    end_properties
+  end_function
+
+# DUONG THANG DOI XUNG VOI 1 DUONG THANG QUA DUONG THANG CHO TRUOC
+  begin_function:DOIXUNG(d1,d2)
+    d1,d2:DUONGTHANG   
+    return C:DUONGTHANG
+    begin_proc            
+       local A,d,H,M,N,i,j;
+	 i:=0;
+         while i<3 do
+         j:=solve(eval(d1, x=i));
+         if j = NULL then j:=1;fi;
+         if eval(d2, {x=i, y=j}) = (0=0) then i:=i+1;
+	 else break;fi;
+         od;
+         A:=[i,j];
+         d:=ptdvgdt(A,d2);
+         H:=solve({d,d2},{x,y});
+         if H = NULL then return NULL; fi;
+         if lhs(H[1])=x then  H:=[rhs(H[1]),rhs(H[2])];
+         else  H:=[rhs(H[2]),rhs(H[1])]; fi;
+         M:=[2*H[1]-A[1],2*H[2]-A[2]];
+ 	 N:=solve({d1,d2},{x,y});
+         if N=NULL then return ptdssdt(M,d1);fi;
+         if lhs(N[1])=x then  N:=[rhs(N[1]),rhs(N[2])];
+         else  N:=[rhs(N[2]),rhs(N[1])]; fi;
+         return ptdt2d(M,N);              
+    end_proc
+    properties        
+    end_properties
+  end_function
+
+# DOAN THANG DOI XUNG VOI 1 DOAN THANG QUA DOAN THANG CHO TRUOC
+  begin_function:DOIXUNG(d1,d2)
+    d1,d2:DOAN   
+    return C:DOAN
+    begin_proc            
+       local A,d,H,M,N,i,j;
+	 i:=0;
+         while i<3 do
+         j:=solve(eval(d1, x=i));
+         if j = NULL then j:=1;fi;
+         if eval(d2, {x=i, y=j}) = (0=0) then i:=i+1;
+	 else break;fi;
+         od;
+         A:=[i,j];
+         d:=ptdvgdt(A,d2);
+         H:=solve({d,d2},{x,y});
+         if H = NULL then return NULL; fi;
+         if lhs(H[1])=x then  H:=[rhs(H[1]),rhs(H[2])];
+         else  H:=[rhs(H[2]),rhs(H[1])]; fi;
+         M:=[2*H[1]-A[1],2*H[2]-A[2]];
+ 	 N:=solve({d1,d2},{x,y});
+         if N=NULL then return ptdssdt(M,d1);fi;
+         if lhs(N[1])=x then  N:=[rhs(N[1]),rhs(N[2])];
+         else  N:=[rhs(N[2]),rhs(N[1])]; fi;
+         return ptdt2d(M,N);              
+    end_proc
+    properties        
+    end_properties
+  end_function
+
+# DOAN THANG DOI XUNG VOI 1 DOAN THANG QUA DUONG THANG CHO TRUOC
+  begin_function:DOIXUNG(d1,d2)
+    d1:DOAN   
+    d2:DUONGTHANG
+    return C:DOAN
+    begin_proc            
+       local A,d,H,M,N,i,j;
+	 i:=0;
+         while i<3 do
+         j:=solve(eval(d1, x=i));
+         if j = NULL then j:=1;fi;
+         if eval(d2, {x=i, y=j}) = (0=0) then i:=i+1;
+	 else break;fi;
+         od;
+         A:=[i,j];
+         d:=ptdvgdt(A,d2);
+         H:=solve({d,d2},{x,y});
+         if H = NULL then return NULL; fi;
+         if lhs(H[1])=x then  H:=[rhs(H[1]),rhs(H[2])];
+         else  H:=[rhs(H[2]),rhs(H[1])]; fi;
+         M:=[2*H[1]-A[1],2*H[2]-A[2]];
+ 	 N:=solve({d1,d2},{x,y});
+         if N=NULL then return ptdssdt(M,d1);fi;
+         if lhs(N[1])=x then  N:=[rhs(N[1]),rhs(N[2])];
+         else  N:=[rhs(N[2]),rhs(N[1])]; fi;
+         return ptdt2d(M,N);              
+    end_proc
+    properties        
+    end_properties
+  end_function
+
+# TRONG TAM CUA 3 DIEM CHO TRUOC
+   begin_function:TRONGTAM(A,B,C)
+    A,B,C:DIEM   
+    return G:DIEM
+    begin_proc          
+      return [(A[1]+B[1]+C[1])/3,(A[2]+B[2]+C[2])/3];       
+    end_proc
+    properties
+       DOAN[A,G].a=DOAN[B,G].a;
+       DOAN[A,G].a=DOAN[C,G].a; 
+    end_properties
+  end_function  
+
+# DUONG TRUNG TRUC CUA DOAN THANG
+  begin_function:TRUNGTRUC(A,B)
+    A,B:DIEM   
+    return d:DUONGTHANG
+    begin_proc   
+      local M,n;
+        M:=[(B[1]+A[1])/2,(B[2]+A[2])/2];
+        n:=[B[1]-A[1],B[2]-A[2]];         
+      return ptdtvg(M,n);
+    end_proc
+    properties
+       ["VUONG",d,DOAN[A,B]];
+       KHOANGCACH(A,d)=KHOANGCACH(B,d);
+    end_properties
+  end_function  
+ 
+# TRUC TAM CUA 3 DIEM CHO TRUOC
+  begin_function:TRUCTAM(A,B,C)
+    A,B,C:DIEM   
+    return H:DIEM
+    begin_proc     
+         local BC,AH,AC,BH, tam1, tam2, temp;
+        BC := [C[1]-B[1],C[2]-B[2]];
+        AH := [x-A[1],y-A[2]];
+        AC := [C[1]-A[1],C[2]-A[2]];
+        BH := [x-B[1],y-B[2]];
+        tam1 := AH[1]*BC[1]+AH[2]*BC[2]=0;
+        tam2 := BH[1]*AC[1]+BH[2 ]*AC[2]=0;
+        temp:=solve({tam1,tam2},{x,y});
+        if temp = NULL then return NULL; fi;
+        if lhs(temp[1])=x then
+            return [rhs(temp[1]),rhs(temp[2])];fi;
+        return [rhs(temp[2]),rhs(temp[1])];       
+    end_proc
+    properties
+       ["VUONG",DOAN[A,H],DOAN[B,C]];
+       ["VUONG",DOAN[B,H],DOAN[A,C]];
+       ["VUONG",DOAN[C,H],DOAN[A,B]];
+       KHOANGCACH(H,DOAN[A,B])=KHOANGCACH(H,DOAN[A,C]);
+       KHOANGCACH(H,DOAN[A,B])=KHOANGCACH(H,DOAN[B,C]);
+    end_properties
+  end_function  
+
+# HE SO GOC CUA DUONG THANG CHO TRUOC
+  begin_function:HESOGOC(d)
+    d:DUONGTHANG
+    return 
+    begin_proc 
+            
+         return coeff(lhs(d),x)/coeff(lhs(d),y);         
+    end_proc
+    properties
+    end_properties
+  end_function  
+end_functions
